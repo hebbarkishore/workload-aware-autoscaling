@@ -1,0 +1,30 @@
+
+version: '3.8'
+
+services:
+  test-microservice-app:
+    build: ./test-microservice-app
+    ports:
+      - "8000:8000"
+
+  telemetry-collector:
+    build: ./telemetry-collector
+    volumes:
+      - ./test-data:/data
+
+  feature-store:
+    build: ./feature-store
+    volumes:
+      - ./test-data:/data
+
+  ml-predictor:
+    build: ./ml-predictor
+    volumes:
+      - ./test-data:/data
+    ports:
+      - "8011:8011"
+
+  decision-engine:
+    build: ./decision-engine
+    volumes:
+      - ./test-data:/data
