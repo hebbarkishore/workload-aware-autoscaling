@@ -9,10 +9,11 @@ The system is designed for demos and research purpose rather than production use
 
 ## What This System Does
 
+- Telemetry Collector emits workload metrics
 - Collects synthetic workload metrics (CPU, request rate, latency)
 - Derives simple workload features
 - Predicts short-term workload pressure using a stub ML service
-- Generates scaling recommendations based on predictions
+- Decision Engine evaluates predictions and suggests scaling actions
 
 ## Project Structure
 

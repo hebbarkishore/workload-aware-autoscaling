@@ -23,6 +23,7 @@ services:
       - ./test-data:/data
     ports:
       - "8011:8011"
+      
 
   decision-engine:
     build: ./decision-engine
