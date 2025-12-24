@@ -1,10 +1,25 @@
-
 import csv
 import time
+import os
 
-with open('/data/metrics.csv', 'a') as f:
+FILE_PATH = "/data/metrics.csv"
+ROWS = 20
+INTERVAL_SECONDS = 1
+
+file_exists = os.path.isfile(FILE_PATH)
+
+with open(FILE_PATH, "a", newline="") as f:
     writer = csv.writer(f)
-    writer.writerow(["timestamp","cpu","rps","latency"])
-    for i in range(20):
-        writer.writerow([time.time(), 0.4 + i*0.01, 100+i*5, 200-i])
-        time.sleep(1)
+
+    if not file_exists:
+        writer.writerow(["timestamp", "cpu", "rps", "latency"])
+
+    for i in range(ROWS):
+        writer.writerow([
+            int(time.time()),
+            round(0.4 + i * 0.01, 2),  
+            100 + i * 5,              
+            max(50, 200 - i)           
+        ])
+        f.flush()                     
+        time.sleep(INTERVAL_SECONDS)
